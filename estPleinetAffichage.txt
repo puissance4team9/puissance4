@@ -1,0 +1,60 @@
+   public static int ajoutColonne(int num, int longu)
+        {
+            int ind;
+            ind=longu-1;
+            while (ind != -1 && jeu[ind][num-1] != "  ")
+            {
+                ind--;
+            }
+            return(ind);
+
+        }
+
+        public static void afficherJeu(int longu,int large)
+        {
+            int i,j;
+            longueur=longu;
+            largeur=large;
+            int numColonne=1;
+            for(i=0;i<largeur;i++)
+            {
+                System.out.print("|" + numColonne+" ");
+                numColonne=numColonne+1;
+            }
+            System.out.print("|");
+
+            System.out.print("\n\n");
+
+            for(i=0;i<longueur;i++)
+            {
+                for(j=0;j<largeur;j++)
+                {
+                    System.out.print("|" + jeu[i][j]);
+                }
+                System.out.print("|\n");
+                for(j=0;j<largeur;j++)
+                {
+                    System.out.print("---");
+                }
+                System.out.print("-\n");
+            }
+            numColonne=1;
+            for(i=0;i<largeur;i++)
+            {
+                System.out.print("|" + numColonne+" ");
+                numColonne=numColonne+1;
+            }
+            System.out.print("|");
+        }
+
+        public static boolean estPlein(int longu, int large)
+        {
+            for(int i=0;i<longu;i++)
+            {
+                for(int j=0;j<large;j++)
+                {
+                    if (jeu[i][j]=="  ") return false;
+                }
+            }
+            return true;
+        }
