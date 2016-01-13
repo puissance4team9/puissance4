@@ -1,7 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package puissance4;
+
 import java.io.*;
 import java.util.*;
 
-    public class puissance4 {
+    public class Puissance4 {
 
         public static int longueur, largeur;
         public static String jeu[][];
@@ -12,6 +19,10 @@ import java.util.*;
             BufferedReader rep = new BufferedReader(isr);
 
             int condition,longueur,i,j,largeur,numColonne,numero;
+            int j1=0;
+            int j2=0;
+            int j3=0;
+            int j4=0;
             numColonne=1;
             longueur=7;
             longueur=6;
@@ -26,7 +37,12 @@ import java.util.*;
             boolean stopColonne=false;
             int auTourDe=0;
             int ind;
+            String bis2;
+            char rejouer;
+            
+    
             System.out.print("\n\n        BIENVENUE au puissance 4 nouvelle generation !  \n\n");
+    
     // taille du tableau
 
             System.out.print("          JOUEZ EN MODE CLASSIQUE ? (Y/N) : ");
@@ -45,7 +61,7 @@ import java.util.*;
 
                         // nombre de joueurs
                 System.out.print("\n\n  MODE PERSONNALISE \n");
-                System.out.print("\n   Nombre de joueurs (2 à 4 joueurs) : ");
+                System.out.print("\n   Nombre de joueurs (2 Ã  4 joueurs) : ");
                 nbsDeJoueurs=Integer.parseInt(rep.readLine());
                 System.out.print("\n");
                 while (nbsDeJoueurs < 2 || nbsDeJoueurs > 4)
@@ -88,6 +104,8 @@ import java.util.*;
             }
             System.out.print("\n");
 
+    do //Pour rejouer
+    {        
     //Construction du tableau intial
 
             jeu = new String[longueur][largeur];
@@ -122,8 +140,8 @@ import java.util.*;
             System.out.print("|");
 
     // BOUCLE JEU
-
-            while (stopPlein == false && stopLigne == false && stopColonne == false && stopDiagHaut == false && stopDiagBas == false)                              // si quelqu'un a gagné ou match nul
+            
+            while (stopPlein == false && stopLigne == false && stopColonne == false && stopDiagHaut == false && stopDiagBas == false)                              // si quelqu'un a gagnÃ© ou match nul
             {
                 if (auTourDe%nbsDeJoueurs==0)
                 {
@@ -267,7 +285,32 @@ import java.util.*;
             int gagnant= (auTourDe%nbsDeJoueurs)+1;
             if (stopLigne==true || stopColonne == true || stopDiagHaut == true || stopDiagBas == true) System.out.print("\n\n\n\n  FELICITATION LE JOUEUR " + gagnant + " GAGNE :) \n\n\n");
             else System.out.print("\n\n\n\n         MATCH NUL \n\n\n");
-        }
+            if((auTourDe%nbsDeJoueurs)+1 == 1) j1++;
+            if((auTourDe%nbsDeJoueurs)+1 == 2) j2++;
+            if((auTourDe%nbsDeJoueurs)+1 == 3) j3++;
+            if((auTourDe%nbsDeJoueurs)+1 == 4) j4++;
+            System.out.print("\n\nVoulez vous rejouer ? (Y/N) ");
+            bis2=rep.readLine();
+            rejouer=bis2.charAt(0);
+            for(i=0;i<longueur;i++)
+            {
+                for(j=0;j<largeur;j++)
+                {
+                    jeu[i][j]="  ";
+                } 
+            }
+            stopLigne=false;stopColonne=false;stopDiagHaut=false;stopDiagBas=false;stopPlein=false;       
+    }while(rejouer == 'Y');
+    
+    
+    System.out.print("\n\n\n        ***SCORE FINAL*** \n\n\n");
+    System.out.print("joueur 1 : " + j1 + "\n\n");
+    System.out.print("joueur 2 : " + j2 + "\n\n");
+    if (nbsDeJoueurs==3 || nbsDeJoueurs==4) System.out.print("joueur 3 : " + j3 + "\n\n");
+    if (nbsDeJoueurs==4) System.out.print("joueur 4 : " + j4 + "\n\n");
+       
+    }
+
 
 
 
